@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "plugins": ["jest"],
+  "env": {
+    "jest/globals": true,
+  }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slider</title>
+  <style>
+    html,body {
+      padding: 0;
+      margin: 0;
+    }
+    .demo {
+      width: 200px;
+      height: 200px;
+      padding: 20px;
+    }
+
+    .tracker {
+      width: 200px;
+      height: 10px;
+      background-color: #ccc;
+    }
+
+    .thumb {
+      width: 10px;
+      height: 10px;
+      margin-left: -5px;
+      box-sizing: border-box;
+      border: 1px solid #000;
+      background-color: red;
+      transition: transform .3s ease-in-out;
+    }
+    /* tooltip */
+    .tooltip {
+      display: none;
+      position: absolute;
+      width: auto;
+      max-width: 200px;
+      padding: .5em 1em;
+      font-size: .8rem;
+      color: #FFFFFF;
+      border-radius: 3px;
+      text-align: center;
+      background: #1E252B;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+    .tooltip.active{
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="demo">
+    <div class="tracker">
+      <div class="thumb"></div>
+    </div>
+  </div>
+</body>
+<script>
+  var slider = new Slider(document.querySelector('.tracker'), {
+    value: 30,
+    range: {
+      min: 10,
+      max: 60
+    },
+    step: 5
+  });
+  
+</script>
+</html>

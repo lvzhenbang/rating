@@ -1,0 +1,51 @@
+{
+  "name": "lzb-rating",
+  "version": "0.0.1",
+  "description": "a plugin of rating",
+  "main": "dist/rating.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvzhenbang/rating.git"
+  },
+  "author": "lvzhenbang <lvzhenbang@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --env=development",
+    "build": "webpack --env=production",
+    "db": "webpack --env=development && npm run build",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "test": "jest src/index.test.js",
+    "test:coverage": "jest --coverage",
+    "deploy": "git checkout -b gh-pages && git pull origin gh-pages && git push origin gh-pages:gh-pages && git checkout master && git branch -D gh-pages"
+  },
+  "homepage": "https://lvzhenbang.github.io/rating/dist/",
+  "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-transform-modules-umd": "^7.2.0",
+    "@babel/preset-env": "^7.5.4",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.1.4",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.9.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.8.0",
+    "lzb-tooltip": "^0.0.2",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/lvzhenbang/rating/issues"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "rating"
+  ]
+}
