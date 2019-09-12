@@ -7,7 +7,7 @@ module.exports = (mode) => {
     mode,
     entry: ['./src/index.js'],
     output: {
-      filename: isDev ? 'slider.js' : 'slider.min.js',
+      filename: isDev ? 'rating.js' : 'rating.min.js',
       path: path.join(__dirname, 'dist'),
       libraryTarget: 'umd',
       umdNamedDefine: true,
