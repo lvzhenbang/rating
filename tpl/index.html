@@ -1,73 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>slider</title>
+  <title>Rating</title>
   <style>
-    html,body {
-      padding: 0;
-      margin: 0;
-    }
-    .demo {
-      width: 200px;
-      height: 200px;
-      padding: 20px;
-    }
-
-    .tracker {
-      width: 200px;
-      height: 10px;
-      background-color: #ccc;
-    }
-
-    .thumb {
-      width: 10px;
-      height: 10px;
-      margin-left: -5px;
+    .star-item {
+      position: relative;
+      display: inline-block;
+      width: 32px;
+      height: 32px;
       box-sizing: border-box;
-      border: 1px solid #000;
-      background-color: red;
-      transition: transform .3s ease-in-out;
+      border: 1px solid red;
     }
-    /* tooltip */
-    .tooltip {
-      display: none;
+    .star-item::after {
+      content: '';
+
       position: absolute;
-      width: auto;
-      max-width: 200px;
-      padding: .5em 1em;
-      font-size: .8rem;
-      color: #FFFFFF;
-      border-radius: 3px;
-      text-align: center;
-      background: #1E252B;
-      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      top: 0;
+      left: 0;
+
+      width: 20px;
+      height: 20px;
+      margin: 6px;
     }
-    .tooltip.active{
-      display: block;
+    .star-filled::after {
+      background-color: red;
+    }
+    .star-half::after {
+      width: 10px;
+      background-color: red;
     }
   </style>
 </head>
 
 <body>
-  <div class="demo">
-    <div class="tracker">
-      <div class="thumb"></div>
-    </div>
-  </div>
+  <div class="rating demo"></div>
+  <div class="rating demo2"></div>
 </body>
 <script>
-  var slider = new Slider(document.querySelector('.tracker'), {
-    value: 30,
-    range: {
-      min: 10,
-      max: 60
-    },
-    step: 5
+  var rating = new Rating(document.querySelector('.rating.demo'), {
+    length: 6,
+    isHalf: false,
+    value: 3.5
   });
+
+  var rating2 = new Rating(document.querySelector('.rating.demo2'), {
+    length: 6,
+    isHalf: true,
+    value: 3.5
+  })
+</script>
   
 </script>
 </html>
