@@ -13,6 +13,7 @@ class Rating {
     this.isHalf = false;
     this.value = this.initValue();
     this.hoverIndex = this.value;
+    this.lastHoverIndex = this.value;
     this.init();
     this.version = version;
   }
@@ -47,28 +48,6 @@ class Rating {
     const currentEl = e.target || e;
     const remainder = this.value % 1;
 
-    // prev item
-    let prevEl = currentEl.previousElementSibling;
-    while (prevEl) {
-      if (prevEl.classList.contains('star-half')) {
-        prevEl.classList.remove('star-half');
-      }
-
-      if (!prevEl.classList.contains('star-filled')) {
-        prevEl.classList.remove('star-outline');
-        prevEl.classList.add('star-filled');
-      }
-      prevEl = prevEl.previousElementSibling;
-    }
-
-    if (prevEl && remainder) {
-      prevEl.classList.remove('star-half');
-      prevEl.classList.add('star-filled');
-    }
-
-    // next item
-    this.setNextItemClass(e);
-
     // current item
     if (this.isHalf) {
       if (currentEl.classList.contains('star-filled')) {
@@ -82,33 +61,59 @@ class Rating {
       currentEl.classList.add('star-filled');
     }
     currentEl.classList.remove('star-outline');
-  }
 
-  setNextItemClass(e) {
-    const currentEl = e.target || e;
+    if (this.hoverIndex < this.value) {
+      let nextEl = currentEl.nextElementSibling;
+      while (nextEl && parseInt(nextEl.dataset.index, 10) < this.value) {
+        nextEl.classList.remove('star-outline');
+        nextEl.classList.add('star-filled');
+        nextEl = nextEl.nextElementSibling;
+      }
 
-    let nextEl = currentEl.nextElementSibling;
-    while (nextEl) {
-      nextEl.classList.contains('star-half') && nextEl.classList.remove('star-half');
-      nextEl.classList.remove('star-filled');
-      nextEl.classList.add('star-outline');
-      nextEl = nextEl.nextElementSibling;
+      if (remainder) {
+        nextEl.classList.remove('star-outline');
+        nextEl.classList.add('star-half');
+      }
+    } else {
+      let prevEl = currentEl.previousElementSibling;
+      while (prevEl) {
+        if (prevEl.classList.contains('star-half')) {
+          prevEl.classList.remove('star-half');
+        }
+
+        if (!prevEl.classList.contains('star-filled')) {
+          prevEl.classList.remove('star-outline');
+          prevEl.classList.add('star-filled');
+        }
+        prevEl = prevEl.previousElementSibling;
+      }
+
+      if (prevEl && remainder) {
+        prevEl.classList.remove('star-half');
+        prevEl.classList.add('star-filled');
+      }
     }
+
+    // next item
+    this.removeNextItemClass(e);
   }
 
   removeItemClass(e) {
     const currentEl = e.target || e;
     const remainder = this.value % 1;
-    const activeIndex = this.options.isHalf ? Math.ceil(this.value) : this.value + 1;
+    const activeIndex = Math.ceil(this.value);
     const currentIndex = parseInt(currentEl.dataset.index, 10);
+
     if (currentIndex === activeIndex) {
+      if (currentEl.classList.contains('star-outline')) currentEl.classList.remove('star-outline');
       // current item
-      if (remainder) {
-        if (this.isHalf) {
-          currentEl.classList.remove('star-half');
-        } else {
-          currentEl.classList.remove('star-filled');
-        }
+      if (!remainder && this.isHalf) {
+        currentEl.classList.remove('star-half');
+        currentEl.classList.add('star-filled');
+      }
+
+      if (!this.isHalf && !currentEl.classList.contains('star-filled')) {
+        currentEl.classList.add('star-filled');
       }
     }
 
@@ -133,7 +138,7 @@ class Rating {
       }
 
       // next item
-      this.setNextItemClass(e);
+      this.removeNextItemClass(e);
     } else {
       let nextEl = currentEl;
       while (nextEl && parseInt(nextEl.dataset.index, 10) < activeIndex) {
@@ -146,7 +151,31 @@ class Rating {
       }
 
       if (remainder) {
+        if (nextEl.classList.contains('star-filled')) nextEl.classList.remove('star-filled');
         nextEl.classList.add('star-half');
+      } else {
+        nextEl.classList.add('star-filled');
+      }
+    }
+  }
+
+  removeNextItemClass(e) {
+    const currentEl = e.target || e;
+    const remainder = this.lastHoverIndex % 1;
+    let nextEl = currentEl.nextElementSibling;
+    while (nextEl && parseInt(nextEl.dataset.index, 10) <= this.lastHoverIndex) {
+      nextEl.classList.remove('star-filled');
+      nextEl.classList.add('star-outline');
+      nextEl = nextEl.nextElementSibling;
+    }
+
+    if (nextEl) {
+      if (remainder) {
+        nextEl.classList.remove('star-half');
+        nextEl.classList.add('star-outline');
+      } else {
+        nextEl.classList.remove('star-filled');
+        nextEl.classList.add('star-outline');
       }
     }
   }
@@ -182,6 +211,7 @@ class Rating {
     } else {
       this.isHalf = false;
     }
+    if (this.lastHoverIndex !== this.value) this.lastHoverIndex = this.value;
     this.setHoverIndex(e);
     this.setItemClass(e);
   }
@@ -198,7 +228,10 @@ class Rating {
 
   mouseClickHandler(e) {
     this.setHoverIndex(e);
-    this.value = this.hoverIndex;
+    if (this.value !== this.hoverIndex) {
+      this.value = this.hoverIndex;
+      this.lastHoverIndex = this.value;
+    }
     if (this.options.isHalf) {
       this.setIsHalf(e);
     } else {
