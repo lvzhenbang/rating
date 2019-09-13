@@ -99,7 +99,7 @@ class Rating {
   removeItemClass(e) {
     const currentEl = e.target || e;
     const remainder = this.value % 1;
-    const activeIndex = Math.ceil(this.value);
+    const activeIndex = this.options.isHalf ? Math.ceil(this.value) : this.value + 1;
     const currentIndex = parseInt(currentEl.dataset.index, 10);
     if (currentIndex === activeIndex) {
       // current item
