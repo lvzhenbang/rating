@@ -11,26 +11,17 @@
       display: inline-block;
       width: 32px;
       height: 32px;
-      box-sizing: border-box;
-      border: 1px solid red;
+      background-image: url('./imgs/star-outline.svg');
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: background .3s ease-in-out;
     }
-    .star-item::after {
-      content: '';
-
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      width: 20px;
-      height: 20px;
-      margin: 6px;
+    .star-item.star-filled {
+      background-image: url('./imgs/star-filled.svg');
     }
-    .star-filled::after {
-      background-color: red;
-    }
-    .star-half::after {
-      width: 10px;
-      background-color: red;
+    .star-item.star-half {
+      background-image: url('./imgs/star-half.svg');
     }
   </style>
 </head>
