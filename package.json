@@ -1,6 +1,6 @@
 {
   "name": "lzb-rating",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a plugin of rating",
   "main": "dist/rating.min.js",
   "repository": {
