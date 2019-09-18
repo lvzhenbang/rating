@@ -6,6 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rating</title>
   <style>
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 500px;
+      height: 200px;
+    }
     .star-item {
       position: relative;
       display: inline-block;
@@ -23,6 +30,22 @@
     .star-item.star-half {
       background-image: url('./imgs/star-half.svg');
     }
+    .tooltip {
+      display: none;
+      position: absolute;
+      width: auto;
+      max-width: 200px;
+      padding: .5em 1em;
+      font-size: .8rem;
+      color: #FFFFFF;
+      border-radius: 3px;
+      text-align: center;
+      background: #1E252B;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+    .tooltip.active{
+      display: block;
+    }
   </style>
 </head>
 
@@ -32,15 +55,17 @@
 </body>
 <script>
   var rating = new Rating(document.querySelector('.rating.demo'), {
-    length: 6,
+    length: 5,
     isHalf: false,
-    value: 3.5
+    value: 3.5,
+    titles: ['极差', '很差', '一般', '很好', '极好'],
   });
 
   var rating2 = new Rating(document.querySelector('.rating.demo2'), {
-    length: 6,
+    length: 5,
     isHalf: true,
-    value: 3.5
+    value: 3.5,
+    titles: ['极差', '很差', '一般', '很好', '极好'],
   });
 </script>
   

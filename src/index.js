@@ -1,3 +1,5 @@
+import Tooltip from 'lzb-tooltip';
+
 import defaults from '../config/defaults';
 import version from '../config/version';
 
@@ -188,6 +190,13 @@ class Rating {
       item.classList.add('star-item');
       item.classList.add('star-outline');
       item.dataset.index = i + 1;
+      if (this.options.titles) {
+        const tootip = new Tooltip(item, {
+          content: this.options.titles[i],
+          placement: 'bottom',
+          distance: 3,
+        });
+      }
       this.attachEvent(item);
       itemContainer.appendChild(item);
     }

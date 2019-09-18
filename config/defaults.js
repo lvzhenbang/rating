@@ -5,6 +5,7 @@ const defaults = {
     max: 10,
   },
   step: 1,
+  titles: false,
 };
 
 export default defaults;
