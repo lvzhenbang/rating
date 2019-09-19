@@ -4583,10 +4583,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lzb-tooltip@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/lzb-tooltip/-/lzb-tooltip-0.0.2.tgz#4df83b5456426f687190838033c512d2047206af"
-  integrity sha512-aYWCNXLkMRgWPYK5Jkd/x3lLJpli2GptK404s+bcQCarRijrtGA3vuJaIZoMSFdK5rC9qJkkbVleMrW+rCrjmQ==
+lzb-tooltip@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/lzb-tooltip/-/lzb-tooltip-0.0.3.tgz#27f25d3f6500b2971ca52a325ebde76a268c1efe"
+  integrity sha512-BhPBN0ffuElAtA9xWPvhYSH2UUpfM0ij5INg98MkqBgVTaBqPIySTNW69xt3C+0fpEHFAvYLxYAIy/6c+PTZWw==
   dependencies:
     "@babel/cli" "^7.5.0"
     "@babel/core" "^7.5.4"
